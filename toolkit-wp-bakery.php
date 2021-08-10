@@ -80,5 +80,5 @@
     // HOOK FOR FRONTEND EDITOR
     add_action( 'vc_load_shortcode', 'll_toolkit_remove_vc_elements', 11 );
 
-    // INCLUDE OPTIONS
+    // INCLUDE OPTION
     // include('options.php');
