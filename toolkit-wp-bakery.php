@@ -15,7 +15,7 @@
         'toolkit-wp-bakery'
     );
 
-    //Set the branch that contains the stable release.
+    //Set the branch that contains the stable release
     $myUpdateChecker->setBranch('main');
 
     // REMOVE UNWANTED FUNCTIONS FROM WPBAKERY LIST
