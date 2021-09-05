@@ -3,7 +3,7 @@
  * Plugin Name: Toolkit for WPBakery
  * Plugin URI: https://legendarylion.com
  * Description: Modifies the options within WPBakery
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Josh Watson
  * Author URI: https://legendarylion.com
  */
