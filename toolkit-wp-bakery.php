@@ -4,7 +4,7 @@
  * Plugin URI: https://legendarylion.com
  * Description: Modifies the options within WPBakery
  * Version: 1.0
- * Author: Josh Watson
+ * Author: Legendary Lion
  * Author URI: https://legendarylion.com
  */
 
@@ -35,7 +35,7 @@
         vc_remove_element( 'vc_toggle' );
         vc_remove_element( 'vc_images_carousel' );
         vc_remove_element( 'vc_custom_heading' );
-        vc_remove_element( 'vc_btn' );
+        // vc_remove_element( 'vc_btn' );
         vc_remove_element( 'vc_cta' );
         vc_remove_element( 'vc_widget_sidebar' );
         vc_remove_element( 'vc_video' );
@@ -82,3 +82,89 @@
 
     // INCLUDE OPTION
     // include('options.php');
+
+    // DISABLE FRONT END EDITOR
+    vc_disable_frontend();
+
+
+
+
+// [button foo="foo-value"]
+add_shortcode( 'button', 'button_func' );
+function button_func( $atts ) {
+extract( shortcode_atts( array(
+'href' => '',
+'link_text' => '',
+'position' => '',
+'class' => 'btn-primary',
+), $atts ) );
+
+// return "foo = {$foo}";
+$href = vc_build_link( $href );
+// Array ( [url] => http://local.wordpress-toolkit.test/green-red-blue/ [title] => Green Red Blue [target] => [rel] => )
+
+
+
+return "
+<div class='ll-vc-btn ll-vc-btn-{$position}'>
+    <a target='{$href['target']}' href='{$href['url']}' class='btn {$class} ' title='{$href['title']}'>{$link_text}</a>
+</div>
+";
+}
+
+add_action( 'vc_before_init', 'legendary_button_integrate_VC' );
+function legendary_button_integrate_VC() {
+ vc_map(
+    array(
+  "name" => __( "Button", "legendary-visual-composer" ),
+  "base" => "button",
+  "class" => "",
+  "icon" => "",
+  "show_settings_on_create" => true,
+  "category" => __( "Content", "legendary-visual-composer"),
+//   'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
+//   'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
+  "params" => 
+        array(
+            array(
+                "type" => "vc_link",
+                //   "holder" => "div",
+                "class" => "",
+                "heading" => __( "Link", "legendary-visual-composer" ),
+                "param_name" => "href",
+                "value" => __( "", "legendary-visual-composer" ),
+                // "description" => __( "Description for foo param.", "legendary-visual-composer" )
+            ),
+            array(
+                "type" => "textfield",
+                "holder" => "div",
+                "class" => "",
+                "heading" => __( "Link Text", "legendary-visual-composer" ),
+                "param_name" => "link_text",
+                "value" => __( "", "legendary-visual-composer" ),
+                // "description" => __( "Description for foo param.", "legendary-visual-composer" )
+            ),
+            array(
+                'type' => 'dropdown',
+                'heading' => __( 'Position', 'js_composer' ),
+                'param_name' => 'position',
+                'value' => array(
+                    'Inline' => 'none',
+                    'Left' => 'left',
+                    'Center' => 'center',
+                    'Right' => 'right',
+                    )
+            ),
+            array(
+                "type" => "textfield",
+                    // "holder" => "div",
+                "class" => "",
+                "heading" => __( "CSS Class", "legendary-visual-composer" ),
+                "param_name" => "class",
+                "value" => __( "", "legendary-visual-composer" ),
+                // "description" => __( "Description for foo param.", "legendary-visual-composer" )
+            ),
+            )
+        ) // END: BUTTON
+    ); // END: VC CUSTOM MAP
+}
