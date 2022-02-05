@@ -45,7 +45,7 @@
         vc_remove_element( 'vc_toggle' );
         vc_remove_element( 'vc_images_carousel' );
         vc_remove_element( 'vc_custom_heading' );
-        // vc_remove_element( 'vc_btn' );
+        vc_remove_element( 'vc_btn' );
         vc_remove_element( 'vc_cta' );
         vc_remove_element( 'vc_widget_sidebar' );
         vc_remove_element( 'vc_video' );
