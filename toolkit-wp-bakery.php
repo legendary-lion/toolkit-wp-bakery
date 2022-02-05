@@ -8,6 +8,9 @@
  * Author URI: https://legendarylion.com
  */
 
+ // Docs for editing: https://kb.wpbakery.com/docs/inner-api/vc_map/
+
+
     require 'plugin-update-checker/plugin-update-checker.php';
     $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
         'https://github.com/legendary-lion/toolkit-wp-bakery',
@@ -15,14 +18,11 @@
         'toolkit-wp-bakery'
     );
 
-    //Set the branch that contains the stable release
+    // Set the branch that contains the stable release
     $myUpdateChecker->setBranch('main');
 
-
     function ll_vc_toolkit_styles() {
-            $plugin_url = plugin_dir_url( __FILE__ );
-
-        wp_enqueue_style( 'style',  $plugin_url . "/css/style.css");
+        wp_enqueue_style( 'style',  plugin_dir_url( __FILE__ ) . "/css/style.css");
     }
 
     add_action( 'admin_print_styles', 'll_vc_toolkit_styles' );
@@ -30,7 +30,6 @@
     // REMOVE UNWANTED FUNCTIONS FROM WPBAKERY LIST
     function ll_toolkit_remove_vc_elements() {
 
-        // REMOVE DEFAULT ELEMENTS
         vc_remove_element( 'vc_icon' );
         vc_remove_element( 'vc_zigzag' );
         vc_remove_element( 'vc_section' );
@@ -80,10 +79,6 @@
         vc_remove_element( 'vc_tabs' );
         vc_remove_element( 'vc_googleplus' );
 
-
-        // add categories, leave blank to remove category -- currently reset all categories in weight foreach loop below
-        // vc_map_update('vc_raw_js', array('category' => ''));
-
         // REMOVE PLUGIN SPECIFIC ELEMENTS
         if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
             vc_remove_element( 'woocommerce_cart' );
@@ -95,6 +90,10 @@
         if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) {
             vc_remove_element( 'vc_acf' );
         }
+
+        // add categories, leave blank to remove category -- currently reset all categories in weight foreach loop below
+        // vc_map_update('vc_raw_js', array('category' => ''));
+
         
     }
 
@@ -113,7 +112,11 @@
 
 
 
+// ADD WIDGETS
+
+// ADD BUTTON 
 // [button foo="foo-value"]
+
 add_shortcode( 'button', 'button_func' );
 function button_func( $atts ) {
 extract( shortcode_atts( array(
@@ -126,8 +129,6 @@ extract( shortcode_atts( array(
 // return "foo = {$foo}";
 $href = vc_build_link( $href );
 // Array ( [url] => http://local.wordpress-toolkit.test/green-red-blue/ [title] => Green Red Blue [target] => [rel] => )
-
-
 
 return "
 <div class='ll-vc-btn ll-vc-btn-{$position}'>
@@ -143,7 +144,7 @@ function legendary_button_integrate_VC() {
   "name" => __( "Button", "legendary-visual-composer" ),
   "base" => "ll_vc_button",
   "class" => "",
-  "icon" => "",
+  "icon" => plugin_dir_url( __FILE__ ) . "/img/ll_vc_button.svg",
   "show_settings_on_create" => true,
   "category" => __( "Content", "legendary-visual-composer"),
 //   'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
@@ -196,15 +197,9 @@ function legendary_button_integrate_VC() {
 
 
 
-// Update order of items
-$settings = array (
-//   'weight' => __( 'new name', 'legendary-visual-composer' ),
-//   'category' => __( 'New category name', 'legendary-visual-composer' )
-);
 
-$weight = 0;
 
-// order the widgets here
+// order the widgets here, top widgets listed first
 $vc_widgets_to_update = array(
     'vc_row',
     'vc_column_text',
@@ -219,10 +214,9 @@ $vc_widgets_to_update = array(
     'vc_raw_html',
     'vc_raw_js',
     'vc_acf',
-
-
 );
 
+$weight = 0;
 $vc_widgets_ordering = array_reverse($vc_widgets_to_update);
 foreach($vc_widgets_ordering as $widget){
     vc_map_update( $widget, 
