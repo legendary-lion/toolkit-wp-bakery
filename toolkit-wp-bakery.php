@@ -23,11 +23,14 @@
     function ll_toolkit_remove_vc_elements() {
 
         // REMOVE DEFAULT ELEMENTS
-        vc_remove_element( 'vc_posts_slider' );
         vc_remove_element( 'vc_icon' );
         vc_remove_element( 'vc_zigzag' );
+        vc_remove_element( 'vc_section' );
+        vc_remove_element( 'vc_gallery' );
         vc_remove_element( 'vc_text_separator' );
         vc_remove_element( 'vc_message' );
+        vc_remove_element( 'vc_tta_pageable' );
+        vc_remove_element( 'vc_posts_slider' );
         vc_remove_element( 'vc_hoverbox' );
         vc_remove_element( 'vc_facebook' );
         vc_remove_element( 'vc_tweetmeme' );
@@ -35,7 +38,7 @@
         vc_remove_element( 'vc_toggle' );
         vc_remove_element( 'vc_images_carousel' );
         vc_remove_element( 'vc_custom_heading' );
-        // vc_remove_element( 'vc_btn' );
+        vc_remove_element( 'vc_btn' );
         vc_remove_element( 'vc_cta' );
         vc_remove_element( 'vc_widget_sidebar' );
         vc_remove_element( 'vc_video' );
@@ -48,6 +51,8 @@
         vc_remove_element( 'vc_media_grid' );
         vc_remove_element( 'vc_masonry_media_grid' );
         vc_remove_element( 'vc_wp_search' );
+        vc_remove_element( 'vc_basic_grid' );
+        vc_remove_element( 'vc_masonry_grid' );
         vc_remove_element( 'vc_gutenberg' );
         vc_remove_element( 'vc_wp_meta' );
         vc_remove_element( 'vc_wp_recentcomments' );
@@ -59,6 +64,7 @@
         vc_remove_element( 'vc_wp_categories' );
         vc_remove_element( 'vc_wp_archives' );
         vc_remove_element( 'vc_wp_rss' );
+        vc_remove_element( 'vc_wp_custommenu' );
 
         // REMOVE PLUGIN SPECIFIC ELEMENTS
         if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
@@ -117,7 +123,7 @@ function legendary_button_integrate_VC() {
  vc_map(
     array(
   "name" => __( "Button", "legendary-visual-composer" ),
-  "base" => "button",
+  "base" => "ll_vc_button",
   "class" => "",
   "icon" => "",
   "show_settings_on_create" => true,
@@ -167,4 +173,43 @@ function legendary_button_integrate_VC() {
             )
         ) // END: BUTTON
     ); // END: VC CUSTOM MAP
+}
+
+
+
+
+// Update order of items
+$settings = array (
+//   'weight' => __( 'new name', 'legendary-visual-composer' ),
+//   'category' => __( 'New category name', 'legendary-visual-composer' )
+);
+
+$weight = 0;
+
+// order the widgets here
+$vc_widgets_to_update = array(
+    'vc_row',
+    'vc_column_text',
+    'vc_single_image',
+    'll_vc_button',
+    'vc_separator',
+    'vc_tta_tabs',
+    'vc_tta_tour',
+    'vc_tta_accordion',
+    'vc_tta_pageable',
+    'vc_raw_html',
+    'vc_raw_js',
+    'vc_empty_space',
+
+
+);
+
+$vc_widgets_ordering = array_reverse($vc_widgets_to_update);
+foreach($vc_widgets_ordering as $widget){
+    vc_map_update( $widget, 
+    array(
+        'weight' => $weight
+        ) 
+    );
+    $weight++;
 }
