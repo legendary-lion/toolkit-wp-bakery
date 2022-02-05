@@ -3,7 +3,7 @@
  * Plugin Name: Toolkit for WPBakery
  * Plugin URI: https://legendarylion.com
  * Description: Modifies the options within WPBakery
- * Version: 1.0
+ * Version: 1.1
  * Author: Legendary Lion
  * Author URI: https://legendarylion.com
  */
@@ -147,8 +147,9 @@ function legendary_button_integrate_VC() {
   "icon" => plugin_dir_url( __FILE__ ) . "/img/ll_vc_button.svg",
   "show_settings_on_create" => true,
   "category" => __( "Content", "legendary-visual-composer"),
-//   'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
-//   'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
+    // 'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
+    // 'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
+    "description" => __( "Add a call to action button", "legendary-visual-composer" ),
   "params" => 
         array(
             array(
