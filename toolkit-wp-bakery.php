@@ -131,7 +131,7 @@ $href = vc_build_link( $href );
 // Array ( [url] => http://local.wordpress-toolkit.test/green-red-blue/ [title] => Green Red Blue [target] => [rel] => )
 
 return "
-<div class='ll-vc-btn ll-vc-btn-{$position}'>
+<div class='ll-vc-btn ll-vc-btn-{$position}' style='text-align:{$position}'>
     <a target='{$href['target']}' href='{$href['url']}' class='btn {$class} ' title='{$href['title']}'>{$link_text}</a>
 </div>
 ";
@@ -198,12 +198,36 @@ function legendary_button_integrate_VC() {
     ); // END: VC CUSTOM MAP
 }
 
-
+// update text block parameters
 vc_map_update('vc_column_text', array(
-    	// 'params' => array(
-
-        //         'value' => '<p>' . esc_html__( 'This is a simple text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'legendary-visual-composer' ) . '</p>',
-        // )
+	'params' => array(
+		array(
+			'type' => 'textarea_html',
+			'holder' => 'div',
+			'heading' => esc_html__( 'Text', 'js_composer' ),
+			'param_name' => 'content',
+			'value' => '<p>' . esc_html__( 'I am just a simple placeholder block of text. Replace me with your content.', 'js_composer' ) . '</p>',
+		),
+		vc_map_add_css_animation(),
+		array(
+			'type' => 'el_id',
+			'heading' => esc_html__( 'Element ID', 'js_composer' ),
+			'param_name' => 'el_id',
+			'description' => sprintf( esc_html__( 'Enter element ID (Note: make sure it is unique and valid according to %sw3c specification%s).', 'js_composer' ), '<a href="https://www.w3schools.com/tags/att_global_id.asp" target="_blank">', '</a>' ),
+		),
+		array(
+			'type' => 'textfield',
+			'heading' => esc_html__( 'Extra class name', 'js_composer' ),
+			'param_name' => 'el_class',
+			'description' => esc_html__( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'js_composer' ),
+		),
+		array(
+			'type' => 'css_editor',
+			'heading' => esc_html__( 'CSS box', 'js_composer' ),
+			'param_name' => 'css',
+			'group' => esc_html__( 'Design Options', 'js_composer' ),
+		),
+	),
 ));
 
 
