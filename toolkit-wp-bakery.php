@@ -90,12 +90,10 @@
         if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) {
             vc_remove_element( 'vc_acf' );
         }
-
-        // add categories, leave blank to remove category -- currently reset all categories in weight foreach loop below
-        // vc_map_update('vc_raw_js', array('category' => ''));
-
         
     }
+    // INCLUDE OPTION
+    // include('options.php');
 
     // HOOK FOR ADMIN EDITOR
     add_action( 'vc_build_admin_page', 'll_toolkit_remove_vc_elements', 11 );
@@ -103,167 +101,41 @@
     // HOOK FOR FRONTEND EDITOR
     add_action( 'vc_load_shortcode', 'll_toolkit_remove_vc_elements', 11 );
 
-    // INCLUDE OPTION
-    // include('options.php');
-
     // DISABLE FRONT END EDITOR
     vc_disable_frontend();
 
+    // ADD WIDGETS
+    // include new widgets and remapped widgets
+    include_once("inc/ll_vc_button.php");
+    include_once("inc/vc_column_text.php");
+    include_once("inc/vc_row.php");
 
 
-
-// ADD WIDGETS
-
-// ADD BUTTON 
-// [button foo="foo-value"]
-
-add_shortcode( 'll_vc_button', 'button_func' );
-function button_func( $atts ) {
-extract( shortcode_atts( array(
-'href' => '',
-'link_text' => '',
-'position' => '',
-'class' => 'btn-primary',
-'css_animation' => '',
-), $atts ) );
-
-// return "foo = {$foo}";
-$href = vc_build_link( $href );
-// Array ( [url] => http://local.wordpress-toolkit.test/green-red-blue/ [title] => Green Red Blue [target] => [rel] => )
-
-$css_animation_classes = '';
-if($css_animation != ''){
-    $css_animation_classes = "wpb_animate_when_almost_visible wpb_{$css_animation} {$css_animation} animated";
-}
-
-return "<div class='ll-vc-btn ll-vc-btn-{$position} {$css_animation_classes}' style='text-align:{$position}'>
-            <a target='{$href['target']}' href='{$href['url']}' class='btn {$class} ' title='{$href['title']}'>{$link_text}</a>
-        </div>
-        ";
-}
-
-add_action( 'vc_before_init', 'legendary_button_integrate_VC' );
-function legendary_button_integrate_VC() {
- vc_map(
-    array(
-  "name" => __( "Button", "legendary-visual-composer" ),
-  "base" => "ll_vc_button",
-  "class" => "",
-  "icon" => plugin_dir_url( __FILE__ ) . "/img/ll_vc_button.svg",
-  "show_settings_on_create" => true,
-//   "category" => __( "Content", "legendary-visual-composer"),
-    // 'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
-    // 'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
-    "description" => __( "Add a call to action button", "legendary-visual-composer" ),
-    
-  "params" => 
-        array(
-
-            array(
-                "type" => "vc_link",
-                //   "holder" => "div",
-                "class" => "",
-                "heading" => __( "Link", "legendary-visual-composer" ),
-                "param_name" => "href",
-                "value" => __( "", "legendary-visual-composer" ),
-                // "description" => __( "Description for foo param.", "legendary-visual-composer" )
-            ),
-            array(
-                "type" => "textfield",
-                "holder" => "div",
-                "class" => "",
-                "heading" => __( "Link Text", "legendary-visual-composer" ),
-                "param_name" => "link_text",
-                "value" => __( "", "legendary-visual-composer" ),
-                // "description" => __( "Description for foo param.", "legendary-visual-composer" )
-            ),
-            array(
-                'type' => 'dropdown',
-                'heading' => __( 'Position', 'js_composer' ),
-                'param_name' => 'position',
-                'value' => array(
-                    'Inline' => 'none',
-                    'Left' => 'left',
-                    'Center' => 'center',
-                    'Right' => 'right',
-                    )
-            ),
-            vc_map_add_css_animation(),
-            array(
-                "type" => "textfield",
-                    // "holder" => "div",
-                "class" => "",
-                "heading" => __( "CSS Class", "legendary-visual-composer" ),
-                "param_name" => "class",
-                "value" => __( "", "legendary-visual-composer" ),
-                // "description" => __( "Description for foo param.", "legendary-visual-composer" )
-            ),
-            )
-        ) // END: BUTTON
-    ); // END: VC CUSTOM MAP
-}
-
-// update text block parameters
-// vc_map_update('vc_column_text', array(
-// 	'params' => array(
-// 		array(
-// 			'type' => 'textarea_html',
-// 			'holder' => 'div',
-// 			'heading' => esc_html__( 'Text', 'js_composer' ),
-// 			'param_name' => 'content',
-// 			'value' => '<p>' . esc_html__( 'I am just a simple placeholder block of text. Replace me with your content.', 'js_composer' ) . '</p>',
-// 		),
-// 		vc_map_add_css_animation(),
-// 		array(
-// 			'type' => 'el_id',
-// 			'heading' => esc_html__( 'Element ID', 'js_composer' ),
-// 			'param_name' => 'el_id',
-// 			'description' => sprintf( esc_html__( 'Enter element ID (Note: make sure it is unique and valid according to %sw3c specification%s).', 'js_composer' ), '<a href="https://www.w3schools.com/tags/att_global_id.asp" target="_blank">', '</a>' ),
-// 		),
-// 		array(
-// 			'type' => 'textfield',
-// 			'heading' => esc_html__( 'Extra class name', 'js_composer' ),
-// 			'param_name' => 'el_class',
-// 			'description' => esc_html__( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'js_composer' ),
-// 		),
-// 		array(
-// 			'type' => 'css_editor',
-// 			'heading' => esc_html__( 'CSS box', 'js_composer' ),
-// 			'param_name' => 'css',
-// 			'group' => esc_html__( 'Design Options', 'js_composer' ),
-// 		),
-// 	),
-// ));
-
-
-
-// order the widgets here, top widgets listed first
-$vc_widgets_to_update = array(
-    'vc_row',
-    'vc_column_text',
-    'vc_single_image',
-    'll_vc_button',
-    'vc_empty_space',
-    'vc_separator',
-    'vc_tta_tabs',
-    'vc_tta_tour',
-    'vc_tta_accordion',
-    'vc_tta_pageable',
-    'vc_raw_html',
-    'vc_raw_js',
-    'vc_acf',
-);
-
-$weight = 0;
-$vc_widgets_ordering = array_reverse($vc_widgets_to_update);
-foreach($vc_widgets_ordering as $widget){
-    vc_map_update( $widget, 
-    array(
-        'weight' => $weight,
-        'category' => '',
-        ) 
+    // order the widgets here, top widgets listed first
+    $vc_widgets_to_update = array(
+        'vc_row',
+        'vc_column_text',
+        'vc_single_image',
+        'll_vc_button',
+        'vc_empty_space',
+        'vc_separator',
+        'vc_tta_tabs',
+        'vc_tta_tour',
+        'vc_tta_accordion',
+        'vc_tta_pageable',
+        'vc_raw_html',
+        'vc_raw_js',
+        'vc_acf',
     );
-    $weight++;
-}
 
-
+    $weight = 0;
+    $vc_widgets_ordering = array_reverse($vc_widgets_to_update);
+    foreach($vc_widgets_ordering as $widget){
+        vc_map_update( $widget, 
+        array(
+            'weight' => $weight,
+            'category' => '',
+            ) 
+        );
+        $weight++;
+    }
