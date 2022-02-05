@@ -150,8 +150,10 @@ function legendary_button_integrate_VC() {
     // 'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
     // 'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
     "description" => __( "Add a call to action button", "legendary-visual-composer" ),
+    
   "params" => 
         array(
+
             array(
                 "type" => "vc_link",
                 //   "holder" => "div",
@@ -181,6 +183,7 @@ function legendary_button_integrate_VC() {
                     'Right' => 'right',
                     )
             ),
+            vc_map_add_css_animation(),
             array(
                 "type" => "textfield",
                     // "holder" => "div",
@@ -196,7 +199,12 @@ function legendary_button_integrate_VC() {
 }
 
 
+vc_map_update('vc_column_text', array(
+    	// 'params' => array(
 
+        //         'value' => '<p>' . esc_html__( 'This is a simple text block. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'legendary-visual-composer' ) . '</p>',
+        // )
+));
 
 
 
@@ -228,3 +236,5 @@ foreach($vc_widgets_ordering as $widget){
     );
     $weight++;
 }
+
+
