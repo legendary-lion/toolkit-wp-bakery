@@ -18,8 +18,16 @@
     //Set the branch that contains the stable release
     $myUpdateChecker->setBranch('main');
 
-    // REMOVE UNWANTED FUNCTIONS FROM WPBAKERY LIST
 
+    function ll_vc_toolkit_styles() {
+            $plugin_url = plugin_dir_url( __FILE__ );
+
+        wp_enqueue_style( 'style',  $plugin_url . "/css/style.css");
+    }
+
+    add_action( 'admin_print_styles', 'll_vc_toolkit_styles' );
+
+    // REMOVE UNWANTED FUNCTIONS FROM WPBAKERY LIST
     function ll_toolkit_remove_vc_elements() {
 
         // REMOVE DEFAULT ELEMENTS
@@ -65,6 +73,16 @@
         vc_remove_element( 'vc_wp_archives' );
         vc_remove_element( 'vc_wp_rss' );
         vc_remove_element( 'vc_wp_custommenu' );
+
+        // deprecated tab widgets
+        vc_remove_element( 'vc_accordion' );
+        vc_remove_element( 'vc_tour' );
+        vc_remove_element( 'vc_tabs' );
+        vc_remove_element( 'vc_googleplus' );
+
+
+        // add categories, leave blank to remove category -- currently reset all categories in weight foreach loop below
+        // vc_map_update('vc_raw_js', array('category' => ''));
 
         // REMOVE PLUGIN SPECIFIC ELEMENTS
         if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
@@ -192,6 +210,7 @@ $vc_widgets_to_update = array(
     'vc_column_text',
     'vc_single_image',
     'll_vc_button',
+    'vc_empty_space',
     'vc_separator',
     'vc_tta_tabs',
     'vc_tta_tour',
@@ -199,7 +218,7 @@ $vc_widgets_to_update = array(
     'vc_tta_pageable',
     'vc_raw_html',
     'vc_raw_js',
-    'vc_empty_space',
+    'vc_acf',
 
 
 );
@@ -208,7 +227,8 @@ $vc_widgets_ordering = array_reverse($vc_widgets_to_update);
 foreach($vc_widgets_ordering as $widget){
     vc_map_update( $widget, 
     array(
-        'weight' => $weight
+        'weight' => $weight,
+        'category' => '',
         ) 
     );
     $weight++;
