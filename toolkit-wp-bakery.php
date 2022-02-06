@@ -109,6 +109,7 @@
     include_once("inc/ll_vc_button.php");
     include_once("inc/vc_column_text.php");
     include_once("inc/vc_row.php");
+    include_once("inc/param_lorem_btn.php");
 
 
     // order the widgets here, top widgets listed first

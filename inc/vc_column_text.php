@@ -10,6 +10,15 @@ vc_map_update('vc_column_text', array(
 			'param_name' => 'content',
 			'value' => '<p>' . esc_html__( 'I am just a simple placeholder block of text. Replace me with your content.', 'js_composer' ) . '</p>',
 		),
+		array(
+		"type" => "ll_add_placeholder_text",
+		"holder" => "div",
+		"class" => "",
+		// "heading" => __("Flipping text", "js_composer"),
+		"param_name" => "ll_add_placeholder_text",
+		"value" => '',
+		// "description" => __( "Add placeholder text", 'legendary-visual-composer' ),
+		),
 		vc_map_add_css_animation(),
 		array(
 			'type' => 'el_id',
@@ -24,7 +33,13 @@ vc_map_update('vc_column_text', array(
 			'description' => esc_html__( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'js_composer' ),
 		),
 		array(
-			'type' => 'css_editor',
+			'type' => 'css',
+			'heading' => esc_html__( 'CSS box', 'js_composer' ),
+			'param_name' => 'css',
+			'group' => esc_html__( 'Design Options', 'js_composer' ),
+		),
+		array(
+			'type' => 'css',
 			'heading' => esc_html__( 'CSS box', 'js_composer' ),
 			'param_name' => 'css',
 			'group' => esc_html__( 'Design Options', 'js_composer' ),
