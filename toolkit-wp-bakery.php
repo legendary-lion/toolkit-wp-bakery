@@ -8,8 +8,8 @@
  * Author URI: https://legendarylion.com
  */
 
- // Docs for editing: https://kb.wpbakery.com/docs/inner-api/vc_map/
-
+// Docs for editing: https://kb.wpbakery.com/docs/inner-api/vc_map/
+// params for each widget can be found in the original plugin at config/content
 
     require 'plugin-update-checker/plugin-update-checker.php';
     $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
@@ -110,6 +110,7 @@
     include_once("inc/vc_column_text.php");
     include_once("inc/vc_row.php");
     include_once("inc/param_lorem_btn.php");
+    include_once("inc/vc_single_image.php");
 
 
     // order the widgets here, top widgets listed first
@@ -135,7 +136,7 @@
         vc_map_update( $widget, 
         array(
             'weight' => $weight,
-            'category' => '',
+            // 'category' => '',
             ) 
         );
         $weight++;

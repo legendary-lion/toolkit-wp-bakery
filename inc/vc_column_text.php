@@ -32,18 +32,6 @@ vc_map_update('vc_column_text', array(
 			'param_name' => 'el_class',
 			'description' => esc_html__( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'js_composer' ),
 		),
-		array(
-			'type' => 'css',
-			'heading' => esc_html__( 'CSS box', 'js_composer' ),
-			'param_name' => 'css',
-			'group' => esc_html__( 'Design Options', 'js_composer' ),
-		),
-		array(
-			'type' => 'css',
-			'heading' => esc_html__( 'CSS box', 'js_composer' ),
-			'param_name' => 'css',
-			'group' => esc_html__( 'Design Options', 'js_composer' ),
-		),
 	),
 ));
 
