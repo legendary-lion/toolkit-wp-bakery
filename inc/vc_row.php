@@ -96,11 +96,11 @@ vc_map_update('vc_row', array(
 			'param_name' => 'css_overlay',
 			'value' => 'rgba(0, 0, 0, 0.5)',
 			// default video url
-			'description' => esc_html__( 'Added as css background above video, below content in E.G. rgba(0, 0, 0, 0.5)', 'js_composer' ),
-			'dependency' => array(
-				'element' => 'video_bg',
-				'not_empty' => true,
-			),
+			'description' => esc_html__( 'Added as css background above the row, below content in E.G. rgba(0, 0, 0, 0.5)', 'js_composer' ),
+			// 'dependency' => array(
+			// 	'element' => 'video_bg',
+			// 	'not_empty' => true,
+			// ),
 		),
 		
 		array(
