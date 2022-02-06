@@ -10,7 +10,7 @@
 
 // Docs for editing: https://kb.wpbakery.com/docs/inner-api/vc_map/
 // params for each widget can be found in the original plugin at config/content
-
+// templates for each widget can be found in the original plugin at include/templates/shortcodes
     require 'plugin-update-checker/plugin-update-checker.php';
     $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
         'https://github.com/legendary-lion/toolkit-wp-bakery',
@@ -20,6 +20,10 @@
 
     // Set the branch that contains the stable release
     $myUpdateChecker->setBranch('main');
+
+
+    $dir = __DIR__ . '/vc_templates';
+    vc_set_shortcodes_templates_dir( $dir );
 
     function ll_vc_toolkit_styles() {
         wp_enqueue_style( 'style',  plugin_dir_url( __FILE__ ) . "/css/style.css");
@@ -141,3 +145,17 @@
         );
         $weight++;
     }
+
+
+// add_action( 'init', 'test_admin_init');
+
+// function test_admin_init() {
+//     echo "<div style='padding:200px;'>";
+// $dir = __DIR__ . '/vc_templates';
+// vc_set_shortcodes_templates_dir( $dir );
+// var_dump( vc_shortcodes_theme_templates_dir( 'vc_row.php' ) );
+//     echo "<pre>";
+//     var_dump( vc_shortcodes_theme_templates_dir( 'vc_row.php' ) ); // Outputs full directory path for vc_message.php template
+//     echo "</pre>";
+//     echo "</div>";
+// }

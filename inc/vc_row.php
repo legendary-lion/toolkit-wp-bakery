@@ -23,27 +23,6 @@ vc_map_update('vc_row', array(
 			'description' => esc_html__( 'Select stretching options for row and content (Note: stretched may not work properly if parent container has "overflow: hidden" CSS property).', 'js_composer' ),
 		),
 		array(
-			'type' => 'dropdown',
-			'heading' => esc_html__( 'Columns gap', 'js_composer' ),
-			'param_name' => 'gap',
-			'value' => array(
-				'0px' => '0',
-				'1px' => '1',
-				'2px' => '2',
-				'3px' => '3',
-				'4px' => '4',
-				'5px' => '5',
-				'10px' => '10',
-				'15px' => '15',
-				'20px' => '20',
-				'25px' => '25',
-				'30px' => '30',
-				'35px' => '35',
-			),
-			'std' => '0',
-			'description' => esc_html__( 'Select gap between columns in row.', 'js_composer' ),
-		),
-		array(
 			'type' => 'checkbox',
 			'heading' => esc_html__( 'Full height row?', 'js_composer' ),
 			'param_name' => 'full_height',
@@ -111,6 +90,19 @@ vc_map_update('vc_row', array(
 				'not_empty' => true,
 			),
 		),
+		array(
+			'type' => 'textfield',
+			'heading' => esc_html__( 'CSS Overlay', 'js_composer' ),
+			'param_name' => 'css_overlay',
+			'value' => 'rgba(0, 0, 0, 0.5)',
+			// default video url
+			'description' => esc_html__( 'Added as css background above video, below content in E.G. rgba(0, 0, 0, 0.5)', 'js_composer' ),
+			'dependency' => array(
+				'element' => 'video_bg',
+				'not_empty' => true,
+			),
+		),
+		
 		array(
 			'type' => 'dropdown',
 			'heading' => esc_html__( 'Parallax', 'js_composer' ),
@@ -201,6 +193,7 @@ vc_map_update('vc_row', array(
 			'param_name' => 'css',
 			'group' => esc_html__( 'Design Options', 'js_composer' ),
 		),
+		
 	),
 )
 );
