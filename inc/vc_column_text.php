@@ -8,7 +8,7 @@ vc_map_update('vc_column_text', array(
 			'holder' => 'div',
 			'heading' => esc_html__( 'Text', 'js_composer' ),
 			'param_name' => 'content',
-			'value' => '<p>' . esc_html__( 'I am just a simple placeholder block of text. Replace me with your content.', 'js_composer' ) . '</p>',
+			'value' => '<p>' . esc_html__( '', 'js_composer' ) . '</p>',
 		),
 		array(
 		"type" => "ll_add_placeholder_text",
