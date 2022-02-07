@@ -94,9 +94,9 @@ vc_map_update('vc_row', array(
 			'type' => 'textfield',
 			'heading' => esc_html__( 'CSS Overlay', 'js_composer' ),
 			'param_name' => 'css_overlay',
-			'value' => 'rgba(0, 0, 0, 0.5)',
+			'value' => '',
 			// default video url
-			'description' => esc_html__( 'Added as css background above the row, below content in E.G. rgba(0, 0, 0, 0.5)', 'js_composer' ),
+			'description' => esc_html__( '*Requires unique ID* Added as css background above the row, below content in E.G. rgba(0, 0, 0, 0.5) or linear-gradient(120deg, #eaee44, #33d0ff)', 'js_composer' ),
 			// 'dependency' => array(
 			// 	'element' => 'video_bg',
 			// 	'not_empty' => true,

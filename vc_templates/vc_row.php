@@ -164,11 +164,11 @@ $output .= $after_output;
 
 $output .= '
 <style>
-.vc_row.vc_row-o-columns-middle.css_overlay > * {
+.vc_row.vc_row-o-columns-middle.'.$el_id.' > * {
     z-index: 100;
 }
 
-.vc_row.vc_row-o-columns-middle.css_overlay::after {
+.vc_row.vc_row-o-columns-middle.'.$el_id.'::after {
     content: "" !important;
     position: absolute;
     top: 0;
@@ -182,7 +182,7 @@ $output .= '
     z-index:2 !important;
 }
 
-.vc_row.vc_row-o-columns-middle.css_overlay .vc_video-bg{
+.vc_row.vc_row-o-columns-middle.'.$el_id.' .vc_video-bg{
     z-index:1 !important;
 }
 </style>
