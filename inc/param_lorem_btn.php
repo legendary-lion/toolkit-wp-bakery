@@ -1,10 +1,10 @@
 <?php
 
-$script = plugin_dir_url( __FILE__ ) . "../js/flip.js";
+$script = plugin_dir_url( __FILE__ ) . "../js/lorem.js";
 
 vc_add_shortcode_param( 'll_add_placeholder_text', 'll_add_placeholder_text_settings_field', $script);
 function ll_add_placeholder_text_settings_field( $settings, $value ) {
-    $script = plugin_dir_url( __FILE__ ) . "../js/flip.js";
+    $script = plugin_dir_url( __FILE__ ) . "../js/lorem.js";
  return '<div class="ll_add_placeholder_text_block">'
  .'<input name="' . esc_attr( $settings['param_name'] ) . '" class="wpb_vc_param_value wpb-textinput ' .
  esc_attr( $settings['param_name'] ) . ' ' .
