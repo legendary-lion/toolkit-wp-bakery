@@ -10,7 +10,7 @@
 }
 
 span.vc_general.vc_ui-button{
-    width:49%;
+    width:calc(48%);
 }
 
 button.vc_btn.vc_btn-grey.vc_btn-sm.vc_param-animation-style-trigger {

@@ -21,28 +21,28 @@ vc_map_update('vc_single_image', array(
 		// 	'param_name' => 'title',
 		// 	'description' => esc_html__( 'Enter text used as widget title (Note: located above content element).', 'js_composer' ),
 		// ),
-		// array(
-		// 	'type' => 'dropdown',
-		// 	'heading' => esc_html__( 'Image source', 'js_composer' ),
-		// 	'param_name' => 'source',
-		// 	'value' => array(
-		// 		esc_html__( 'Media library', 'js_composer' ) => 'media_library',
-		// 		esc_html__( 'External link', 'js_composer' ) => 'external_link',
-		// 		esc_html__( 'Featured Image', 'js_composer' ) => 'featured_image',
-		// 	),
-		// 	'std' => 'media_library',
-		// 	'description' => esc_html__( 'Select image source.', 'js_composer' ),
-		// ),
+		array(
+			'type' => 'hidden',
+			'heading' => esc_html__( 'Image source', 'js_composer' ),
+			'param_name' => 'source',
+			'value' => array(
+				esc_html__( 'Media library', 'js_composer' ) => 'media_library',
+				// esc_html__( 'External link', 'js_composer' ) => 'external_link',
+				// esc_html__( 'Featured Image', 'js_composer' ) => 'featured_image',
+			),
+			'std' => 'media_library',
+			'description' => esc_html__( 'Select image source.', 'js_composer' ),
+		),
 		array(
             'type' => 'attach_image',
 			'heading' => esc_html__( 'Image', 'js_composer' ),
 			'param_name' => 'image',
 			'value' => '',
 			'description' => esc_html__( 'Select image from media library.', 'js_composer' ),
-			// 'dependency' => array(
-            //     'element' => 'source',
-			// 	'value' => 'media_library',
-			// ),
+			'dependency' => array(
+                'element' => 'source',
+				'value' => 'media_library',
+			),
 			'admin_label' => true,
 		),
         // array(
@@ -63,17 +63,17 @@ vc_map_update('vc_single_image', array(
         //         ),
         //     ),
         // ),
-		// array(
-		// 	'type' => 'textfield',
-		// 	'heading' => esc_html__( 'External link', 'js_composer' ),
-		// 	'param_name' => 'custom_src',
-		// 	'description' => esc_html__( 'Select external link.', 'js_composer' ),
-		// 	'dependency' => array(
-		// 		'element' => 'source',
-		// 		'value' => 'external_link',
-		// 	),
-		// 	'admin_label' => true,
-		// ),
+		array(
+			'type' => 'textfield',
+			'heading' => esc_html__( 'External link', 'js_composer' ),
+			'param_name' => 'custom_src',
+			'description' => esc_html__( 'Select external link.', 'js_composer' ),
+			'dependency' => array(
+				'element' => 'source',
+				'value' => 'external_link',
+			),
+			'admin_label' => true,
+		),
 		array(
 			'type' => 'textfield',
 			'heading' => esc_html__( 'Image size', 'js_composer' ),
