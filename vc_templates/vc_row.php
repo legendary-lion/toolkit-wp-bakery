@@ -162,29 +162,31 @@ $output .= wpb_js_remove_wpautop( $content );
 $output .= '</div>';
 $output .= $after_output;
 
-$output .= '
-<style>
-.vc_row.vc_row-o-columns-middle.'.$el_id.' > * {
-    z-index: 100;
-}
+if($has_video_bg){
+	$output .= '
+	<style>
+	.vc_row.vc_row-o-columns-middle.'.$el_id.' > * {
+		z-index: 100;
+	}
 
-.vc_row.vc_row-o-columns-middle.'.$el_id.'::after {
-    content: "" !important;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    height: 100% !important;
-    background: '.$atts['css_overlay'].';
-    opacity: .7;
-    z-index:1;
-    visibility:initial;
-    z-index:2 !important;
-}
+	.vc_row.vc_row-o-columns-middle.'.$el_id.'::after {
+		content: "" !important;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100% !important;
+		height: 100% !important;
+		background: '.$atts['css_overlay'].';
+		opacity: .7;
+		z-index:1;
+		visibility:initial;
+		z-index:2 !important;
+	}
 
-.vc_row.vc_row-o-columns-middle.'.$el_id.' .vc_video-bg{
-    z-index:1 !important;
+	.vc_row.vc_row-o-columns-middle.'.$el_id.' .vc_video-bg{
+		z-index:1 !important;
+	}
+	</style>
+	';
 }
-</style>
-';
 echo $output;

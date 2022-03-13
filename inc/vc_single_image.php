@@ -63,17 +63,17 @@ vc_map_update('vc_single_image', array(
         //         ),
         //     ),
         // ),
-		array(
-			'type' => 'textfield',
-			'heading' => esc_html__( 'External link', 'js_composer' ),
-			'param_name' => 'custom_src',
-			'description' => esc_html__( 'Select external link.', 'js_composer' ),
-			'dependency' => array(
-				'element' => 'source',
-				'value' => 'external_link',
-			),
-			'admin_label' => true,
-		),
+		// array(
+		// 	'type' => 'textfield',
+		// 	'heading' => esc_html__( 'External link', 'js_composer' ),
+		// 	'param_name' => 'custom_src',
+		// 	'description' => esc_html__( 'Select external link.', 'js_composer' ),
+		// 	'dependency' => array(
+		// 		'element' => 'source',
+		// 		'value' => 'external_link',
+		// 	),
+		// 	'admin_label' => true,
+		// ),
 		array(
 			'type' => 'textfield',
 			'heading' => esc_html__( 'Image size', 'js_composer' ),
@@ -88,17 +88,6 @@ vc_map_update('vc_single_image', array(
 				),
 			),
 		),
-		// array(
-		// 	'type' => 'textfield',
-		// 	'heading' => esc_html__( 'Image size', 'js_composer' ),
-		// 	'param_name' => 'external_img_size',
-		// 	'value' => '',
-		// 	'description' => esc_html__( 'Enter image size in pixels. Example: 200x100 (Width x Height).', 'js_composer' ),
-		// 	'dependency' => array(
-		// 		'element' => 'source',
-		// 		'value' => 'external_link',
-		// 	),
-		// ),
 		// array(
 		// 	'type' => 'textfield',
 		// 	'heading' => esc_html__( 'Caption', 'js_composer' ),
