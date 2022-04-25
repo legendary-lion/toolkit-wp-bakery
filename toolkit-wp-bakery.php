@@ -3,7 +3,7 @@
  * Plugin Name: Toolkit for WPBakery
  * Plugin URI: https://legendarylion.com
  * Description: Modifies the options within WPBakery
- * Version: 1.0.7
+ * Version: 1.0.8
  * Author: Legendary Lion
  * Author URI: https://legendarylion.com
  */
@@ -21,18 +21,17 @@
     // Set the branch that contains the stable release
     $myUpdateChecker->setBranch('master');
 
-
-    $dir = __DIR__ . '/vc_templates';
+    $dir = __DIR__ . '/vc_templates/shortcode_templates';
     vc_set_shortcodes_templates_dir( $dir );
 
-    function ll_vc_toolkit_styles() {
-        wp_enqueue_style( 'style',  plugin_dir_url( __FILE__ ) . "/css/style.css");
+    function toolkit_vc_styles() {
+        wp_enqueue_style( 'toolkit_vc_styles',  plugin_dir_url( __FILE__ ) . "/inc/css/style.css");
     }
 
-    add_action( 'admin_print_styles', 'll_vc_toolkit_styles' );
+    add_action( 'admin_print_styles', 'toolkit_vc_styles' );
 
     // REMOVE UNWANTED FUNCTIONS FROM WPBAKERY LIST
-    function ll_toolkit_remove_vc_elements() {
+    function toolkit_vc_remove_vc_elements() {
 
         vc_remove_element( 'vc_icon' );
         vc_remove_element( 'vc_zigzag' );
@@ -77,7 +76,7 @@
         vc_remove_element( 'vc_wp_rss' );
         vc_remove_element( 'vc_wp_custommenu' );
 
-        // deprecated tab widgets
+        // deprecated tab elements
         vc_remove_element( 'vc_accordion' );
         vc_remove_element( 'vc_tour' );
         vc_remove_element( 'vc_tabs' );
@@ -96,33 +95,34 @@
         }
         
     }
-    // INCLUDE OPTION
-    // include('options.php');
 
     // HOOK FOR ADMIN EDITOR
-    add_action( 'vc_build_admin_page', 'll_toolkit_remove_vc_elements', 11 );
+    add_action( 'vc_build_admin_page', 'toolkit_vc_remove_vc_elements', 11 );
 
     // HOOK FOR FRONTEND EDITOR
-    add_action( 'vc_load_shortcode', 'll_toolkit_remove_vc_elements', 11 );
+    add_action( 'vc_load_shortcode', 'toolkit_vc_remove_vc_elements', 11 );
 
     // DISABLE FRONT END EDITOR
     vc_disable_frontend();
 
-    // ADD WIDGETS
-    // include new widgets and remapped widgets
-    include_once("inc/ll_vc_button.php");
-    include_once("inc/vc_column_text.php");
-    include_once("inc/vc_row.php");
-    include_once("inc/param_lorem_btn.php");
-    include_once("inc/vc_single_image.php");
+    // ADD PARAMS
+    include_once("vc_templates/params/param_lorem_btn.php");
 
+    // ADD ELEMENTS
+    include_once("vc_templates/elements/toolkit_vc_button.php");
+    include_once("vc_templates/elements/toolkit_vc_custom_widget.php");
+    include_once("vc_templates/elements/toolkit_vc_fancybox_media.php");
 
-    // order the widgets here, top widgets listed first
-    $vc_widgets_to_update = array(
+    // ADD MAP UPDATES
+    include_once("vc_templates/map_updates/vc_column_text.php");
+    include_once("vc_templates/map_updates/vc_row.php");
+    include_once("vc_templates/map_updates/vc_single_image.php");
+
+    // order the elements here, top elements listed first
+    $vc_elements_to_update = array(
         'vc_row',
         'vc_column_text',
         'vc_single_image',
-        'll_vc_button',
         'vc_empty_space',
         'vc_separator',
         'vc_tta_tabs',
@@ -132,30 +132,16 @@
         'vc_raw_html',
         'vc_raw_js',
         'vc_acf',
+        'toolkit_vc_button',
+        'toolkit_vc_custom_widget',
+        'toolkit_vc_fancybox_media'
     );
 
     $weight = 0;
-    $vc_widgets_ordering = array_reverse($vc_widgets_to_update);
-    foreach($vc_widgets_ordering as $widget){
-        vc_map_update( $widget, 
-        array(
+    $vc_elements_ordering = array_reverse($vc_elements_to_update);
+    foreach($vc_elements_ordering as $element){
+        vc_map_update( $element, array(
             'weight' => $weight,
-            // 'category' => '',
-            ) 
-        );
+        ));
         $weight++;
     }
-
-
-// add_action( 'init', 'test_admin_init');
-
-// function test_admin_init() {
-//     echo "<div style='padding:200px;'>";
-// $dir = __DIR__ . '/vc_templates';
-// vc_set_shortcodes_templates_dir( $dir );
-// var_dump( vc_shortcodes_theme_templates_dir( 'vc_row.php' ) );
-//     echo "<pre>";
-//     var_dump( vc_shortcodes_theme_templates_dir( 'vc_row.php' ) ); // Outputs full directory path for vc_message.php template
-//     echo "</pre>";
-//     echo "</div>";
-// }

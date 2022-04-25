@@ -9,11 +9,9 @@ var placeholder_text = `
 
 <p>I don't know anybody who said, 'I love that teacher, he or she gave a really good homework set,' or 'Boy, that was the best class I ever took because those exams were awesome.' That's not what people want to talk about. It's not what influences people in one profession or another.</p>
 `;
-console.log("Element chosen from VC interface, activating script...");
 !function($) {
   $('.add-placeholder-text').click(function(e){
     e.preventDefault();
-    console.log("Adding text!");
     tinyMCE.activeEditor.focus();
     var myContent = tinymce.activeEditor.getContent();
     var myContent = myContent + placeholder_text;
