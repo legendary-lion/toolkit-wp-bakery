@@ -107,6 +107,8 @@
 
     // ADD PARAMS
     include_once("vc_templates/params/param_lorem_btn.php");
+    include_once("vc_templates/params/param_element_settings_html.php");
+    
 
     // ADD ELEMENTS
     include_once("vc_templates/elements/toolkit_vc_button.php");
