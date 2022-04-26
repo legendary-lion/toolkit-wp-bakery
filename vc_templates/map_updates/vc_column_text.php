@@ -1,6 +1,7 @@
 <?php
 
 vc_map_update('vc_column_text', array(
+	'icon' => plugin_dir_url( __FILE__ ) . '../../assets/img/toolkit_vc_text_block.svg',
 	'params' => array(
 		array(
 			'type' => 'textarea_html',
@@ -31,5 +32,3 @@ vc_map_update('vc_column_text', array(
 		),
 	),
 ));
-
-

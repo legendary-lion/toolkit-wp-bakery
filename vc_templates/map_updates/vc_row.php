@@ -3,7 +3,7 @@
 vc_map_update('vc_row', array(
 	'name' => esc_html__( 'Row', 'toolkit-vc' ),
 	'is_container' => true,
-	'icon' => 'icon-wpb-row',
+	'icon' => plugin_dir_url( __FILE__ ) . '../../assets/img/toolkit_vc_row.svg',
 	'show_settings_on_create' => false,
 	'category' => esc_html__( 'Content', 'toolkit-vc' ),
 	'class' => 'vc_main-sortable-element',

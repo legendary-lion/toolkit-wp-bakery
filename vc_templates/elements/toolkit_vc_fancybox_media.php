@@ -22,7 +22,7 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
             'base'          => 'toolkit_vc_fancybox_media',
             'description'  	=> __( '', 'toolkit-vc' ),
             'category'      => __( 'Toolkit Modules', 'toolkit-vc'),
-            'icon'          => plugin_dir_url( __FILE__ ) . '../../assets/img/toolkit_vc_fancybox.svg',
+            'icon'          => plugin_dir_url( __FILE__ ) . '../../assets/img/toolkit_vc_fancybox_media.svg',
             'params' => array(
                 array(
                     'type'          => 'dropdown',

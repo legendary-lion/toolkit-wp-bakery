@@ -3,7 +3,7 @@
 // update text block parameters
 vc_map_update('vc_single_image', array(
 	'name' => esc_html__( 'Single Image', 'toolkit-vc' ),
-	'icon' => 'icon-wpb-single-image',
+	'icon' => plugin_dir_url( __FILE__ ) . '../../assets/img/toolkit_vc_single_image.svg',
 	'category' => esc_html__( 'Content', 'toolkit-vc' ),
 	'description' => esc_html__( 'Simple image with CSS animation', 'toolkit-vc' ),
 	'params' => array(

@@ -117,6 +117,14 @@
     include_once("vc_templates/map_updates/vc_column_text.php");
     include_once("vc_templates/map_updates/vc_row.php");
     include_once("vc_templates/map_updates/vc_single_image.php");
+    include_once("vc_templates/map_updates/vc_empty_space.php");
+    include_once("vc_templates/map_updates/vc_separator.php");
+    include_once("vc_templates/map_updates/vc_tta_tabs.php");
+    include_once("vc_templates/map_updates/vc_tta_tour.php");
+    include_once("vc_templates/map_updates/vc_tta_accordion.php");
+    include_once("vc_templates/map_updates/vc_raw_html.php");
+    include_once("vc_templates/map_updates/vc_raw_js.php");
+
 
     // order the elements here, top elements listed first
     $vc_elements_to_update = array(
