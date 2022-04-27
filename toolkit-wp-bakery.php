@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Toolkit for WPBakery
+ * Plugin Name: WPBakery Toolkit
  * Plugin URI: https://legendarylion.com
  * Description: Modifies the options within WPBakery
  * Version: 1.0.8

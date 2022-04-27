@@ -5,10 +5,17 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
         add_action( 'init', array( $this, 'create_shortcode' ), 999 );            
         add_shortcode( 'toolkit_vc_fancybox_media', array( $this, 'render_shortcode' ) );
 
-        wp_enqueue_script('fancybox_js', plugin_dir_url( __FILE__ ) . "../../lib/fancybox/fancybox.umd.js", array('jquery'));
-        wp_enqueue_style('fancybox_css', plugin_dir_url( __FILE__ ) . "../../lib/fancybox/fancybox.css");        
+        // wrapping into a function to streamline the loading to prevent php notices
+        add_action( 'wp_enqueue_scripts', function() {
+            wp_enqueue_script('fancybox_js', plugin_dir_url( __FILE__ ) . "../../lib/fancybox/fancybox.umd.js", array('jquery'));
 
-        wp_enqueue_style('toolkit_vc_fancybox_media_css', plugin_dir_url( __FILE__ ) . "../../inc/css/toolkit-vc-fancybox-media.css");
+            wp_enqueue_style('fancybox_css', plugin_dir_url( __FILE__ ) . "../../lib/fancybox/fancybox.css");        
+            wp_enqueue_style('toolkit_vc_fancybox_media_css', plugin_dir_url( __FILE__ ) . "../../inc/css/toolkit-vc-fancybox-media.css");
+        });
+
+
+
+
     }        
 
     public function create_shortcode() {
