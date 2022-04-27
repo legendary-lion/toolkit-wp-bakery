@@ -22,7 +22,14 @@
     $myUpdateChecker->setBranch('master');
 
     $dir = __DIR__ . '/vc_templates/shortcode_templates';
-    vc_set_shortcodes_templates_dir( $dir );
+    
+    // check to see if visual composer is present and enabled
+    if(function_exists('vc_set_shortcodes_templates_dir')){
+        vc_set_shortcodes_templates_dir( $dir );
+    } else {
+        // kill script if visual composer is not enabled
+        die();
+    }
 
     function toolkit_vc_styles() {
         wp_enqueue_style( 'toolkit_vc_styles',  plugin_dir_url( __FILE__ ) . "/inc/css/style.css");
