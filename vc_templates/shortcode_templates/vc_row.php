@@ -29,6 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $el_class = $full_height = $parallax_speed_bg = $parallax_speed_video = $full_width = $equal_height = $flex_row = $columns_placement = $content_placement = $parallax = $parallax_image = $css = $el_id = $video_bg = $video_bg_url = $video_bg_parallax = $css_animation = '';
 $disable_element = '';
 $output = $after_output = '';
+$reverse_on_mobile = '';
 $atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 extract( $atts );
 
@@ -154,6 +155,10 @@ if($atts['css_overlay']){
 	$css_classes[] = 'css_overlay';
 }
 
+if($reverse_on_mobile){
+	$css_classes[] = 'reverse_on_mobile';
+}
+
 $css_class = preg_replace( '/\s+/', ' ', apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, implode( ' ', array_filter( array_unique( $css_classes ) ) ), $this->settings['base'], $atts ) );
 $wrapper_attributes[] = 'class="' . esc_attr( trim( $css_class ) ) . '"';
 
@@ -161,6 +166,8 @@ $output .= '<div ' . implode( ' ', $wrapper_attributes ) . '>';
 $output .= wpb_js_remove_wpautop( $content );
 $output .= '</div>';
 $output .= $after_output;
+
+
 
 if($has_video_bg){
 	$output .= '

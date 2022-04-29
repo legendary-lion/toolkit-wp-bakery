@@ -31,11 +31,16 @@
         die();
     }
 
+    function toolkit_vc_admin_styles() {
+        wp_enqueue_style( 'toolkit_vc_admin_styles',  plugin_dir_url( __FILE__ ) . "/inc/css/admin-style.css");
+    }
+    add_action( 'admin_print_styles', 'toolkit_vc_admin_styles' );
+    
     function toolkit_vc_styles() {
         wp_enqueue_style( 'toolkit_vc_styles',  plugin_dir_url( __FILE__ ) . "/inc/css/style.css");
     }
-
-    add_action( 'admin_print_styles', 'toolkit_vc_styles' );
+    add_action( 'wp_head', 'toolkit_vc_styles' );
+    
 
     // REMOVE UNWANTED FUNCTIONS FROM WPBAKERY LIST
     function toolkit_vc_remove_vc_elements() {

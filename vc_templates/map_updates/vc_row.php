@@ -29,6 +29,13 @@ vc_map_update('vc_row', array(
 			'value' => array( esc_html__( 'Yes', 'toolkit-vc' ) => 'yes' ),
 		),
 		array(
+			'type' => 'checkbox',
+			'heading' => esc_html__( 'Reverse order for mobile?', 'toolkit-vc' ),
+			'param_name' => 'reverse_on_mobile',
+			'description' => esc_html__( 'If checked row will reverse order for mobile (under 769px).', 'toolkit-vc' ),
+			'value' => array( esc_html__( 'Yes', 'toolkit-vc' ) => 'yes' ),
+		),
+		array(
 			'type' => 'dropdown',
 			'heading' => esc_html__( 'Columns position', 'toolkit-vc' ),
 			'param_name' => 'columns_placement',

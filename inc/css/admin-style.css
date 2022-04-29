@@ -1,0 +1,22 @@
+.vc_navbar-header,
+#vc_fullscreen-button,
+#vc_post-settings-button {
+    display: none;
+}
+
+span.vc_general.vc_ui-button{
+    width:calc(48%);
+}
+
+button.vc_btn.vc_btn-grey.vc_btn-sm.vc_param-animation-style-trigger {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 11px 50px;
+}
+
+@media only screen and (max-width: 769px) {
+	.swap-on-mobile {
+		display: flex !important;
+		flex-direction: column-reverse;
+	}
+}
