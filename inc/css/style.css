@@ -4,3 +4,16 @@
 		flex-direction: column-reverse;
 	}
 }
+
+.vc_col-has-fill>.vc_column-inner, .vc_row-has-fill+.vc_row-full-width+.vc_row>.vc_column_container>.vc_column-inner, .vc_row-has-fill+.vc_row>.vc_column_container>.vc_column-inner, .vc_row-has-fill>.vc_column_container>.vc_column-inner{
+    padding-top:0;
+}
+
+.wpb_button, .wpb_content_element, ul.wpb_thumbnails-fluid>li{
+    margin-bottom:0;
+} 
+
+.wpb_content_element{
+    padding-top:20px;
+    padding-bottom:35px;
+}
