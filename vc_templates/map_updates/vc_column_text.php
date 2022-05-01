@@ -30,5 +30,11 @@ vc_map_update('vc_column_text', array(
 			'param_name' => 'el_class',
 			'description' => esc_html__( 'Style particular content element differently - add a class name and refer to it in custom CSS.', 'toolkit-vc' ),
 		),
+		array(
+			'type' => 'css_editor',
+			'heading' => __( 'Css', 'toolkit-vc' ),
+			'param_name' => 'css',
+			'group' => __( 'Design Options', 'toolkit-vc' ),
+		),
 	),
 ));
