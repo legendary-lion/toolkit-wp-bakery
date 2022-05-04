@@ -12,10 +12,6 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
             wp_enqueue_style('fancybox_css', plugin_dir_url( __FILE__ ) . "../../lib/fancybox/fancybox.css");        
             wp_enqueue_style('toolkit_vc_fancybox_media_css', plugin_dir_url( __FILE__ ) . "../../inc/css/toolkit-vc-fancybox-media.css");
         });
-
-
-
-
     }        
 
     public function create_shortcode() {
@@ -177,10 +173,89 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
                     ),
                 ),
                 array(
+                    'type'          => 'dropdown',
+                    'heading'       => __( 'HTML Link Type', 'toolkit-vc' ),
+                    'param_name'    => 'html_link_type',
+                    'value'         => array(
+                        __( 'Select Link Type', 'toolkit-vc' ) => '',
+                        __( 'Image', 'toolkit-vc' ) => 'image',
+                        __( 'Link', 'toolkit-vc' ) => 'link',
+                    ),
+                    'description'   => __( '', 'toolkit-vc' ),
+                    'dependency'    => array(
+                        'element'   => 'type',
+                        'value'     => 'html'
+                    ),
+                ),
+                array(
+                    'type'          => 'attach_image',
+                    'heading'       => esc_html__('HTML Link Image', 'toolkit-vc'),
+                    'param_name'    => 'html_link_image',
+                    'description'   => esc_html__('', 'toolkit-vc'),
+                    'dependency'    => array(
+                        'element'   => 'html_link_type',
+                        'value'     => 'image'
+                    ),
+                ),
+                array(
+                    'type'          => 'textfield',
+                    'heading'       => esc_html__('HTML Link Image Size', 'toolkit-vc'),
+                    'param_name'    => 'html_link_image_size',
+                    'value'         => 'large',
+                    'description'   => esc_html__('Enter image size (Example: "thumbnail", "medium", "large", "full" or other sizes defined by theme).', 'toolkit-vc'),
+                    'dependency'    => array(
+                        'element'   => 'html_link_type',
+                        'value'     => 'image'
+                    ),
+                ),
+                array(
+                    'type'          => 'textarea_raw_html',
+                    'heading'       => __( 'HTML Link Content', 'toolkit-vc' ),
+                    'param_name'    => 'html_link_content',
+                    'value'         => '',
+                    'description'   => __( 'Example: <code>&lt;i class="fa fa-info-circle"&gt;&lt;/i&gt; Learn More</code>', 'toolkit-vc' ),
+                    'dependency'    => array(
+                        'element'   => 'html_link_type',
+                        'value'     => 'link'
+                    ),
+                ),
+                array(
+                    'type'          => 'textfield',
+                    'heading'       => __( 'HTML Link Classes', 'toolkit-vc' ),
+                    'param_name'    => 'html_link_classes',
+                    'value'         => '',
+                    'description'   => __( 'For buttons, use: <code>btn btn-primary</code>', 'toolkit-vc' ),
+                    'dependency'    => array(
+                        'element'   => 'html_link_type',
+                        'value'     => 'link'
+                    ),
+                ),
+                array(
+                    'type'          => 'textfield',
+                    'heading'       => esc_html__('HTML Popup Width', 'toolkit-vc'),
+                    'param_name'    => 'html_popup_width',
+                    'value'         => '500px',
+                    'description'   => __('All CSS Units Allowed. Example: <code>500px</code>', 'toolkit-vc'),
+                    'dependency'    => array(
+                        'element'   => 'type',
+                        'value'     => 'html'
+                    ),
+                ),
+                array(
                     'type'          => 'textarea_raw_html',
                     'heading'       => esc_html__('Raw HTML', 'toolkit-vc'),
                     'param_name'    => 'html',
                     'description'   => esc_html__('', 'toolkit-vc'),
+                    'dependency'    => array(
+                        'element'   => 'type',
+                        'value'     => 'html'
+                    ),
+                ),
+                array(
+                    'type'          => 'textfield',
+                    'heading'       => esc_html__('Element ID', 'toolkit-vc'),
+                    'param_name'    => 'html_id',
+                    'description'   => esc_html__('Required If Using Multiple HTML Elements Per Page', 'toolkit-vc'),
                     'dependency'    => array(
                         'element'   => 'type',
                         'value'     => 'html'
@@ -206,7 +281,14 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
             'video_link_image_size' => 'large',
             'video_link_content'    => '',
             'video_link_classes'    => '',
+            'html_link_type'       => '',
+            'html_link_image'      => '',
+            'html_link_image_size' => 'large',
+            'html_link_content'    => '',
+            'html_link_classes'    => '',
+            'html_popup_width' => '500px',
             'html'                  => '',
+            'html_id' => 'fancybox-html-1',
         ), $atts );
 
         $type = $params['type'];
@@ -222,7 +304,14 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
         $video_link_image_size = $params['video_link_image_size'];
         $video_link_classes = $params['video_link_classes'];
         $video_link = $params['video_link'];
+        $html_link_type = $params['html_link_type'];
+        $html_link_content = $params['html_link_content'];
+        $html_link_image = $params['html_link_image'];
+        $html_link_image_size = $params['html_link_image_size'];
+        $html_link_classes = $params['html_link_classes'];
+        $html_popup_width = $params['html_popup_width'];
         $html = $params['html'];
+        $html_id = $params['html_id'];
 
         if (!$type) {
             return;
@@ -251,9 +340,10 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
             $link_content = ($video_link_type == 'link') ? urldecode(base64_decode($video_link_content)) : wp_get_attachment_image($video_link_image, $video_link_image_size);
             $output .= "<a data-fancybox class='$video_link_classes' href='$video_link'>$link_content</a>";
         }
-
         if ($type == 'html'){
-            $output .= $html;
+            $link_content = ($html_link_type == 'link') ? urldecode(base64_decode($html_link_content)) : wp_get_attachment_image($html_link_image, $html_link_image_size);
+            $output .= "<div style='display:none;max-width:$html_popup_width;' id='$html_id'>" . urldecode(base64_decode($html)) . "</div>";
+            $output .= "<a data-fancybox class='$html_link_classes' data-fancybox='dialog' data-src='#$html_id' href='#$html_id'>$link_content</a>";
         }
 
         $output .= '</div>';
