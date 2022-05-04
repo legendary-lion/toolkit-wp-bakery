@@ -261,6 +261,12 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
                         'value'     => 'html'
                     ),
                 ),
+                array(
+                    'type' => 'css_editor',
+                    'heading' => __( 'CSS', 'toolkit-vc' ),
+                    'param_name' => 'css',
+                    'group' => __( 'Design Options', 'toolkit-vc' ),
+                ),
             ),
         ));
     }
@@ -289,6 +295,7 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
             'html_popup_width' => '500px',
             'html'                  => '',
             'html_id' => 'fancybox-html-1',
+            'css' => '',
         ), $atts );
 
         $type = $params['type'];
@@ -312,14 +319,17 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
         $html_popup_width = $params['html_popup_width'];
         $html = $params['html'];
         $html_id = $params['html_id'];
+        $css = $params['css'];
 
         if (!$type) {
             return;
         }
 
+        $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
+
         $output = '';
 
-        $output .= '<div class="fancybox-media-content">';
+        $output .= "<div class='toolkit-vc-fancybox-media $css_class'>";
 
         if ($type == 'image'){
             $original_url = wp_get_attachment_image_url($image_id, 'full');

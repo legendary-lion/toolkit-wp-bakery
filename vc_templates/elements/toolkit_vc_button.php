@@ -54,6 +54,12 @@ class toolkit_vc_button extends WPBakeryShortCode {
                     "param_name" => "class",
                     "value" => __( "", "toolkit-vc" ),
                 ),
+                array(
+                    'type' => 'css_editor',
+                    'heading' => __( 'CSS', 'toolkit-vc' ),
+                    'param_name' => 'css',
+                    'group' => __( 'Design Options', 'toolkit-vc' ),
+                ),
             )
         ));
     }
@@ -66,15 +72,10 @@ class toolkit_vc_button extends WPBakeryShortCode {
             'position' => '',
             'class' => 'btn-primary',
             'css_animation' => '',
+            'css' => '',
         ), $atts );
 
         $href = vc_build_link( $params['href'] );
-
-        $css_animation_classes = '';
-    
-        if ($params['css_animation'] != ''){
-            $css_animation_classes = "wpb_animate_when_almost_visible wpb_". $params['css_animation'] ." ". $params['css_animation'] ." animated";
-        }
 
         $target = $href['target'];
         $url = $href['url'];
@@ -82,10 +83,20 @@ class toolkit_vc_button extends WPBakeryShortCode {
         $position = $params['position'];
         $class = $params['class'];
         $link_text = $params['link_text'];
+        $css_animation = $params['css_animation'];
+        $css = $params['css'];
+
+        $css_animation_classes = '';
+    
+        if ($css_animation != ''){
+            $css_animation_classes = "wpb_animate_when_almost_visible wpb_". $css_animation ." ". $css_animation ." animated";
+        }
+
+        $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
 
         $output = '';
 
-        $output .= "<div class='toolkit-vc-btn toolkit-vc-btn-$position $css_animation_classes' style='text-align:$position'>
+        $output .= "<div class='toolkit-vc-btn toolkit-vc-btn-$position $css_animation_classes $css_class' style='text-align:$position'>
             <a target='$target' href='$url' class='btn $class' title='$title'>$link_text</a>
         </div>";
 

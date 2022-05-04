@@ -3,7 +3,7 @@ class toolkit_vc_custom_widget extends WPBakeryShortCode {
 
     function __construct() {
         add_action( 'init', array( $this, 'create_shortcode' ), 999 );
-        add_shortcode( 'custom_widget', array( $this, 'render_shortcode' ) );
+        add_shortcode( 'toolkit_vc_custom_widget', array( $this, 'render_shortcode' ) );
     }
 
     public function create_shortcode() {
@@ -52,7 +52,7 @@ class toolkit_vc_custom_widget extends WPBakeryShortCode {
 
         vc_map( array(
             'name'          => __('Custom Widget', 'toolkit-vc'),
-            'base'          => 'custom_widget',
+            'base'          => 'toolkit_vc_custom_widget',
             'description'  	=> __( '', 'toolkit-vc' ),
             'category'      => __( 'Toolkit Modules', 'toolkit-vc'),
             'icon'          => plugin_dir_url( __FILE__ ) . '../../assets/img/toolkit_vc_custom_widget.svg',
@@ -63,6 +63,12 @@ class toolkit_vc_custom_widget extends WPBakeryShortCode {
                     'type' => 'toolkit_vc_element_settings_html',
                     'content' => __($message, 'toolkit-vc'),
                 ),
+                array(
+                    'type' => 'css_editor',
+                    'heading' => __( 'CSS', 'toolkit-vc' ),
+                    'param_name' => 'css',
+                    'group' => __( 'Design Options', 'toolkit-vc' ),
+                ),
             ),
         ));
 
@@ -71,21 +77,30 @@ class toolkit_vc_custom_widget extends WPBakeryShortCode {
         
         $params = shortcode_atts( array(
             'id' => '',
+            'css' => '',
         ), $atts );
 
-        if (!$params['id']) {
+        $id = $params['id'];
+        $css = $params['css'];
+
+        if (!$id) {
             return;
         }
 
-        $widget_post = get_post($params['id']);
+        $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
+
+        $widget_post = get_post($id);
+
         if (!$widget_post) {
             return;
         }
 
-        $content = $widget_post->post_content;
-        $content = apply_filters('the_content', $content);
-        $content = str_replace(']]>', ']]&gt;', $content);
-        return $content;
+        $output = '';
+
+        $output .= "<div class='toolkit-vc-custom-widget $css_class'>";
+        $output .= str_replace(']]>', ']]&gt;', apply_filters('the_content', $widget_post->post_content));
+        $output .= "</div>";
+        return $output;
     }
 }
 
