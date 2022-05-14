@@ -172,11 +172,11 @@ $output .= $after_output;
 if($has_video_bg){
 	$output .= '
 	<style>
-	.vc_row.vc_row-o-columns-middle.'.$el_id.' > * {
+	.vc_row.vc_row-o-columns-middle#'.$el_id.' > * {
 		z-index: 100;
 	}
 
-	.vc_row.vc_row-o-columns-middle.'.$el_id.'::after {
+	.vc_row.vc_row-o-columns-middle#'.$el_id.'::after {
 		content: "" !important;
 		position: absolute;
 		top: 0;
@@ -184,13 +184,12 @@ if($has_video_bg){
 		width: 100% !important;
 		height: 100% !important;
 		background: '.$atts['css_overlay'].';
-		opacity: .7;
 		z-index:1;
 		visibility:initial;
 		z-index:2 !important;
 	}
 
-	.vc_row.vc_row-o-columns-middle.'.$el_id.' .vc_video-bg{
+	.vc_row.vc_row-o-columns-middle#'.$el_id.' .vc_video-bg{
 		z-index:1 !important;
 	}
 	</style>
