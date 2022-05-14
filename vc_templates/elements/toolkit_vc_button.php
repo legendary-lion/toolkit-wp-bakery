@@ -92,11 +92,14 @@ class toolkit_vc_button extends WPBakeryShortCode {
             $css_animation_classes = "wpb_animate_when_almost_visible wpb_". $css_animation ." ". $css_animation ." animated";
         }
 
-        $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
+        // $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
+
+
 
         $output = '';
 
-        $output .= "<div class='toolkit-vc-btn toolkit-vc-btn-$position $css_animation_classes $css_class' style='text-align:$position'>
+        // $output .= "<div class='toolkit-vc-btn toolkit-vc-btn-$position $css_animation_classes $css_class' style='text-align:$position'>
+        $output .= "<div class='toolkit-vc-btn toolkit-vc-btn-$position $css_animation_classes $css' style='text-align:$position'>
             <a target='$target' href='$url' class='btn $class' title='$title'>$link_text</a>
         </div>";
 

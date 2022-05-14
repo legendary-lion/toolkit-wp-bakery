@@ -325,11 +325,12 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
             return;
         }
 
-        $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
+        // $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
 
         $output = '';
 
-        $output .= "<div class='toolkit-vc-fancybox-media $css_class'>";
+        // $output .= "<div class='toolkit-vc-fancybox-media $css_class'>";
+        $output .= "<div class='toolkit-vc-fancybox-media $css'>";
 
         if ($type == 'image'){
             $original_url = wp_get_attachment_image_url($image_id, 'full');
