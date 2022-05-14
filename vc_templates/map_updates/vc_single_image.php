@@ -75,6 +75,22 @@ vc_map_update('vc_single_image', array(
 				'value' => 'custom_link',
 			),
 		),
+		array(
+			'type' => 'dropdown',
+			'heading' => esc_html__( 'Link Target', 'js_composer' ),
+			'param_name' => 'img_link_target',
+			'value' => array(
+				esc_html__( 'Same window', 'js_composer' ) => '_self',
+				esc_html__( 'New window', 'js_composer' ) => '_blank',
+			),
+			'dependency' => array(
+				'element' => 'onclick',
+				'value' => array(
+					'custom_link',
+					'img_link_large',
+				),
+			),
+		),
 		vc_map_add_css_animation(),
 		array(
 			'type' => 'el_id',
