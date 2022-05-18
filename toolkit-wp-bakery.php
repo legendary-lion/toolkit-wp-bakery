@@ -3,7 +3,7 @@
  * Plugin Name: WPBakery Toolkit
  * Plugin URI: https://legendarylion.com
  * Description: Modifies the options within WPBakery
- * Version: 1.0.9
+ * Version: 1.0.10
  * Author: Legendary Lion
  * Author URI: https://legendarylion.com
  */
@@ -24,12 +24,9 @@
     $dir = __DIR__ . '/vc_templates/shortcode_templates';
     
     // check to see if visual composer is present and enabled
-    if(function_exists('vc_set_shortcodes_templates_dir')){
+if(function_exists('vc_set_shortcodes_templates_dir')){
         vc_set_shortcodes_templates_dir( $dir );
-    } else {
-        // kill script if visual composer is not enabled
-        die();
-    }
+
 
     function toolkit_vc_admin_styles() {
         wp_enqueue_style( 'toolkit_vc_admin_styles',  plugin_dir_url( __FILE__ ) . "/inc/css/admin-style.css");
@@ -167,3 +164,5 @@
         ));
         $weight++;
     }
+
+}
