@@ -46,6 +46,19 @@ class toolkit_vc_button extends WPBakeryShortCode {
                         'Right' => 'right',
                     )
                 ),
+                array(
+                    'type' => 'dropdown',
+                    'heading' => __( 'Button Type', 'js_composer' ),
+                    'param_name' => 'button_type',
+                    'value' => array(
+                        'Primary' => 'primary',
+                        'Secondary' => 'secondary',
+                        'Outline Light' => 'outline-light',
+                        'Outline Dark' => 'outline-dark',
+                        'Outline Primary' => 'outline-primary',
+                        'Outline Secondary' => 'outline-secondary',
+                    )
+                ),
                 vc_map_add_css_animation(),
                 array(
                     "type" => "textfield",
@@ -70,7 +83,8 @@ class toolkit_vc_button extends WPBakeryShortCode {
             'href' => '',
             'link_text' => '',
             'position' => '',
-            'class' => 'btn-primary',
+            'button_type' => '',
+            'class' => '',
             'css_animation' => '',
             'css' => '',
         ), $atts );
@@ -81,10 +95,35 @@ class toolkit_vc_button extends WPBakeryShortCode {
         $url = $href['url'];
         $title = $href['title'];
         $position = $params['position'];
+        $button_type = $params['button_type'];
         $class = $params['class'];
         $link_text = $params['link_text'];
         $css_animation = $params['css_animation'];
         $css = $params['css'];
+
+        switch ($button_type) {
+            case 'primary':
+                $class .= ' btn-primary';
+                break;
+            case 'secondary':
+                $class .= ' btn-secondary';
+                break;
+            case 'outline-light':
+                $class .= ' btn-outline-light';
+                break;
+            case 'outline-dark':
+                $class .= ' btn-outline-dark';
+                break;
+            case 'outline-primary':
+                $class .= ' btn-outline-primary';
+                break;
+            case 'outline-secondary':
+                $class .= ' btn-outline-secondary';
+                break;
+            default:
+                $class .= ' btn-primary';
+                break;
+        }
 
         $css_animation_classes = '';
     
