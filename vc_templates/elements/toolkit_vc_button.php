@@ -125,15 +125,17 @@ class toolkit_vc_button extends WPBakeryShortCode {
                 break;
         }
 
+        $position_class = '';
+
         switch ($position) {
-            case 'none':
-                $css .= ' d-inline-block';
+            case '':
+                $position_class .= ' d-inline-block';
             case 'left':
-                $css .= ' d-block text-left';
+                $position_class .= ' d-block text-left';
             case 'center':
-                $css .= ' d-block text-center';
+                $position_class .= ' d-block text-center';
             case 'right':
-                $css .= 'd-block text-right';
+                $position_class .= 'd-block text-right';
         }
 
         $css_animation_classes = '';
@@ -147,7 +149,7 @@ class toolkit_vc_button extends WPBakeryShortCode {
         $output = '';
 
         // $output .= "<div class='toolkit-vc-btn toolkit-vc-btn-$position $css_animation_classes $css_class' style='text-align:$position'>
-        $output .= "<div class='toolkit-vc-btn toolkit-vc-btn-$position $css_animation_classes $css'>
+        $output .= "<div class='toolkit-vc-btn toolkit-vc-btn-$position $css_animation_classes $css $position_class'>
             <a target='$target' href='$url' class='btn $class' title='$title'>$link_text</a>
         </div>";
 
