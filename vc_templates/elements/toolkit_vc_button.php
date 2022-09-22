@@ -129,13 +129,17 @@ class toolkit_vc_button extends WPBakeryShortCode {
 
         switch ($position) {
             case '':
-                $position_class .= ' d-inline-block';
+                $position_class = ' d-inline-block';
+                break;
             case 'left':
-                $position_class .= ' d-block text-left';
+                $position_class = ' d-block text-left';
+                break;
             case 'center':
-                $position_class .= ' d-block text-center';
+                $position_class = ' d-block text-center';
+                break;
             case 'right':
-                $position_class .= 'd-block text-right';
+                $position_class = 'd-block text-right';
+                break;
         }
 
         $css_animation_classes = '';
