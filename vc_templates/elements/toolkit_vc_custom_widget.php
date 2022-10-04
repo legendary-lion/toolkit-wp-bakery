@@ -100,6 +100,14 @@ class toolkit_vc_custom_widget extends WPBakeryShortCode {
         $output .= "<div class='toolkit-vc-custom-widget $css_class'>";
         $output .= str_replace(']]>', ']]&gt;', apply_filters('the_content', $widget_post->post_content));
         $output .= "</div>";
+
+        $widget_custom_css = get_post_meta( $id, '_wpb_shortcodes_custom_css', true );
+        if ( ! empty( $widget_custom_css ) ) {
+            $widget_custom_css = strip_tags( $widget_custom_css );
+            $output .= '<style type="text/css" data-type="vc_shortcodes-custom-css">';
+            $output .= $widget_custom_css;
+            $output .= '</style>';
+        }
         return $output;
     }
 }
