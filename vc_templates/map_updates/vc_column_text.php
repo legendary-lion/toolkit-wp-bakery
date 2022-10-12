@@ -17,6 +17,11 @@ vc_map_update('vc_column_text', array(
 			"param_name" => "toolkit_vc_add_placeholder_text",
 			"value" => '',
 		),
+		array(
+			'type'          => 'checkbox',
+			'heading'       => esc_html__('Force White Text', 'toolkit-vc'),
+			'param_name'    => 'force_white_text',
+		),
 		vc_map_add_css_animation(),
 		array(
 			'type' => 'el_id',
