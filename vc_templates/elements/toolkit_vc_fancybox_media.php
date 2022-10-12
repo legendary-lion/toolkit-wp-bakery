@@ -95,6 +95,15 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
                     ),
                 ),
                 array(
+                    'type'          => 'checkbox',
+                    'heading'       => esc_html__('Preserve Image Aspect Ratios?', 'toolkit-vc'),
+                    'param_name'    => 'gallery_aspect_ratio',
+                    'dependency'    => array(
+                        'element'   => 'type',
+                        'value'     => 'gallery'
+                    ),
+                ),
+                array(
                     'type'          => 'textfield',
                     'heading'       => esc_html__('Gallery ID', 'toolkit-vc'),
                     'param_name'    => 'gallery_id',
@@ -280,6 +289,7 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
             'gallery_images'        => '',
             'gallery_items_per_row' => '4',
             'gallery_gap_size'     => '2px',
+            'gallery_aspect_ratio' => '',
             'gallery_id'            => 'fancybox-gallery-1',
             'video_link'            => '',
             'video_link_type'       => '',
@@ -305,6 +315,7 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
         $gallery_items_per_row = $params['gallery_items_per_row'];
         $gallery_gap_size = $params['gallery_gap_size'];
         $gallery_id = $params['gallery_id'];
+        $gallery_aspect_ratio = $params['gallery_aspect_ratio'];
         $video_link_type = $params['video_link_type'];
         $video_link_content = $params['video_link_content'];
         $video_link_image = $params['video_link_image'];
@@ -338,11 +349,12 @@ class toolkit_vc_fancybox_media extends WPBakeryShortCode {
             $output .= $image;
         }
         if ($type == 'gallery'){
+            $aspect_ratio_class = ($gallery_aspect_ratio) ? 'preserve-aspect-ratios' : '';
             $image_ids = explode(',', $gallery_images);
-            $output .= "<div class='fancybox-gallery' style='grid-template-columns: repeat($gallery_items_per_row, 1fr); gap: $gallery_gap_size'>";
+            $output .= "<div class='fancybox-gallery $aspect_ratio_class' id='$gallery_id' style='grid-template-columns: repeat($gallery_items_per_row, 1fr); gap: $gallery_gap_size'>";
             foreach ($image_ids as $i => $image_id) {
                 $original_url = wp_get_attachment_image_url($image_id, 'full');
-                $image = wp_get_attachment_image($image_id, 'large', false, array('data-fancybox' => $gallery_id, 'data-src' => $original_url));
+                $image = wp_get_attachment_image($image_id, 'medium', false, array('data-fancybox' => $gallery_id, 'data-src' => $original_url));
                 $output .= "<div class='fill-image'>$image</div>";
             }
             $output .= '</div>';
