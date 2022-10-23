@@ -30,6 +30,7 @@ $el_class = $full_height = $parallax_speed_bg = $parallax_speed_video = $full_wi
 $disable_element = '';
 $output = $after_output = '';
 $reverse_on_mobile = '';
+$follow_me = '';
 $atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 extract( $atts );
 
@@ -157,6 +158,11 @@ if($atts['css_overlay']){
 
 if($reverse_on_mobile){
 	$css_classes[] = 'reverse_on_mobile';
+}
+
+// note this includes custom css in inc/css/style.css for the class: .vc_row.scroll-with-me
+if($follow_me){
+	$css_classes[] = 'scroll-with-me';
 }
 
 $css_class = preg_replace( '/\s+/', ' ', apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, implode( ' ', array_filter( array_unique( $css_classes ) ) ), $this->settings['base'], $atts ) );

@@ -174,6 +174,14 @@ vc_map_update('vc_row', array(
 			'value' => array( esc_html__( 'Yes', 'toolkit-vc' ) => 'yes' ),
 		),
 		array(
+			'type' => 'checkbox',
+			'heading' => esc_html__( '"Follow Me" row', 'toolkit-vc' ),
+			'param_name' => 'follow_me',
+			// Inner param name.
+			'description' => esc_html__( 'If checked the columns with the class "sticky" will stick to the top of the browser and travel the height of the row.', 'toolkit-vc' ),
+			'value' => array( esc_html__( 'Yes', 'toolkit-vc' ) => 'yes' ),
+		),		
+		array(
 			'type' => 'textfield',
 			'heading' => esc_html__( 'Extra class name', 'toolkit-vc' ),
 			'param_name' => 'el_class',

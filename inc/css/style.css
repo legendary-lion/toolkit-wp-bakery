@@ -21,3 +21,7 @@
 .force-text-white * {
     color:white;
 }
+
+.vc_row.scroll-with-me {
+    overflow: initial !important;
+}
