@@ -12,14 +12,14 @@
 // params for each widget can be found in the original plugin at config/content
 // templates for each widget can be found in the original plugin at include/templates/shortcodes
     require 'plugin-update-checker/plugin-update-checker.php';
-    $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+    $myVCExtensionUpdater = Puc_v4_Factory::buildUpdateChecker(
         'https://github.com/legendary-lion/toolkit-wp-bakery',
         __FILE__,
         'toolkit-wp-bakery'
     );
 
     // Set the branch that contains the stable release
-    $myUpdateChecker->setBranch('master');
+    $myVCExtensionUpdater->setBranch('master');
 
     $dir = __DIR__ . '/vc_templates/shortcode_templates';
     
