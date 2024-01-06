@@ -93,7 +93,7 @@ vc_map_update('vc_row', array(
 			'heading' => esc_html__( 'CSS Overlay', 'toolkit-vc' ),
 			'param_name' => 'css_overlay',
 			'value' => '',
-			'description' => esc_html__( '*Requires unique ID* Added as css background above the row, below content in E.G. rgba(0, 0, 0, 0.5) or linear-gradient(120deg, #eaee44, #33d0ff)', 'toolkit-vc' ),
+			'description' => esc_html__( '*Requires unique ID* Added as css background above the row, below content in E.G. rgba(0, 0, 0, 0.5) -or- linear-gradient(120deg, rgba(234, 238, 68, 0.7), rgba(51, 208, 255, 0.7))', 'toolkit-vc' ),
 		),
 		array(
 			'type' => 'dropdown',
